@@ -1,5 +1,52 @@
 function cadastraPais() {
-   
+    const nome = document.getElementById('nome').value;
+    const capital = document.getElementById('capital').value;
+
+    // Configurar os dados que serão enviados
+    const dados = {
+        nome: nome,
+        capital: capital
+    };
+
+    // Configurar as opções da requisição
+    const opcoes = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+    };
+
+    // Realizar a requisição
+    fetch('http://localhost:8080/pais', opcoes)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao cadastrar país');
+            }
+            // Se a resposta for OK, exibe o alerta de sucesso
+            Swal.fire({
+                icon: 'success',
+                title: 'Cadastro realizado com sucesso!',
+                showConfirmButton: true,
+                timer: 1500
+            });
+
+            // Limpa os campos do formulário após o cadastro
+            document.getElementById('nome').value = '';
+            document.getElementById('capital').value = '';
+        })
+        .catch(error => {
+            // Se ocorrer um erro, exibe o alerta de falha
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro ao cadastrar país',
+                text: error.message
+            });
+        });
+
+    // Limpa os campos do formulário após o cadastro
+    document.getElementById('nome').value = '';
+    document.getElementById('capital').value = '';
 }
 
 function buscaTodos() {
