@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="author" content="Rafael de Sena Selvagio">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Gerenciador de Tarefas</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+	<div class="container mt-5">
+		<h2>Gerenciador de Tarefas</h2>
+
+		<!-- Formulário de Cadastro -->
+		<form id="formCadastro" class="mt-3">
+			<div class="form-group">
+				<label for="titulo">Título:</label>
+				<input type="text" class="form-control" id="titulo" required>
+			</div>
+			<div class="form-group">
+				<label for="descricao">Descrição:</label>
+				<textarea class="form-control" id="descricao" rows="3" required></textarea>
+			</div>
+			<div class="form-group">
+				<label for="dataVencimento">Data de Vencimento:</label>
+				<input type="date" class="form-control" id="dataVencimento" required>
+			</div>
+			<button type="button" class="btn btn-primary" onclick="cadastrarTarefa()">Cadastrar Tarefa</button>
+		</form>
+
+		<!-- Lista de Tarefas -->
+		<div class="mt-5">
+			<h3>Lista de Tarefas</h3>
+			<ul id="listaTarefas" class="list-group"></ul>
+		</div>
+
+	</div>
+
+	<!-- Modal para exibir detalhes da tarefa -->
+	<div class="modal fade" id="modalDetalhesTarefa" tabindex="-1" role="dialog"
+		aria-labelledby="modalDetalhesTarefaLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalDetalhesTarefaLabel">Detalhes da Tarefa</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div>
+						<strong>ID:</strong> <span id="detalhesIdTarefa"></span>
+					</div>
+					<div>
+						<strong>Título:</strong> <span id="detalhesTitulo"></span>
+					</div>
+					<div>
+						<strong>Descrição:</strong> <span id="detalhesDescricao"></span>
+					</div>
+					<div>
+						<strong>Data de Criação:</strong> <span id="detalhesDataCriacao"></span>
+					</div>
+					<div>
+						<strong>Data de Vencimento:</strong> <span id="detalhesDataVencimento"></span>
+					</div>
+					<div>
+						<strong>Prioridade:</strong> <span id="detalhesPrioridade"></span>
+					</div>
+					<div>
+						<strong>Estado:</strong> <span id="detalhesEstado"></span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success" onclick="finalizarTarefa()">Finalizar</button>
+					<button type="button" class="btn btn-primary" onclick="buscaTarefaPorId()">Editar</button>
+					<button type="button" class="btn btn-danger" onclick="excluirTarefa()">Excluir</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal de Edição -->
+	<div class="modal fade" id="modalEdicaoTarefa" tabindex="-1" role="dialog" aria-labelledby="modalEdicaoTarefaLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalEdicaoTarefaLabel">Editar Tarefa</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="edicaoTitulo">Título:</label>
+							<input type="text" class="form-control" id="edicaoTitulo" required
+								placeholder="Título da tarefa">
+						</div>
+						<div class="form-group">
+							<label for="edicaoDescricao">Descrição:</label>
+							<textarea class="form-control" id="edicaoDescricao" rows="3"
+								placeholder="Descrição da tarefa"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="edicaoDataCriacao">Data de Criação:</label>
+							<input type="text" class="form-control" id="edicaoDataCriacao" readonly>
+						</div>
+						<div class="form-group">
+							<label for="edicaoDataVencimento">Data de Vencimento:</label>
+							<input type="text" class="form-control" id="edicaoDataVencimento"
+								placeholder="Data de vencimento da tarefa">
+						</div>
+						<div class="form-group">
+							<label for="edicaoPrioridade">Prioridade:</label>
+							<select class="form-control" id="edicaoPrioridade">
+								<option value="ALTA">Alta</option>
+								<option value="MEDIA">Média</option>
+								<option value="BAIXA">Baixa</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="edicaoEstado">Estado:</label>
+							<select class="form-control" id="edicaoEstado">
+								<option value="A_FAZER">A Fazer</option>
+								<option value="EM_ANDAMENTO">Em Andamento</option>
+								<option value="CONCLUIDA">Concluída</option>
+							</select>
+						</div>
+						<input type="hidden" id="edicaoIdTarefa">
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-success" id="btnGravarEdicao">Gravar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="js/index.js"></script>
+
+</body>
+
+</html>
