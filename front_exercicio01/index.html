@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Países</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" id="myTabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="lista-tab" data-toggle="tab" href="#lista">Lista</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="busca-tab" data-toggle="tab" href="#busca">Busca</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="cadastro-tab" data-toggle="tab" href="#cadastro">Cadastro</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content mt-2">
+
+            <!--Aba Lista -->
+            <div class="tab-pane active" id="lista">
+                <h4>Lista de Países</h4>
+                
+                <table class="table table-bordered" id="tabela_lista"></table>
+            </div>
+
+            <!--Aba Busca -->
+            <div class="tab-pane" id="busca">
+                <h4>Buscar Países</h4>
+                <!-- Conteúdo da Busca -->
+                <input type="text" class="form-control" id="nome_busca" placeholder="Digite o nome do país">
+                <button class="btn btn-primary mt-2" id="btn_busca">Buscar</button>
+
+                <hr />
+
+                <ul id="ul_lista_busca_nome"></ul>
+            </div>
+
+            <!--Aba Cadastro -->
+            <div class="tab-pane" id="cadastro">
+                <h4>Cadastrar País</h4>
+                <!-- Conteúdo do Cadastro -->
+                <form>
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" class="form-control" id="nome" required placeholder="Nome do país">
+                    </div>
+                    <div class="form-group">
+                        <label for="capital">Capital:</label>
+                        <input type="text" class="form-control" id="capital" required placeholder="Capital do país">
+                    </div>
+                    <button type="button" class="btn btn-success" id="btn_cadastra">Cadastrar</button>
+                </form>
+            </div>
+
+            <!--Aba Edição -->
+            <div class="tab-pane" id="edicao">
+                <h4>Editar País</h4>
+                <!-- Conteúdo da Edição -->
+                <form>
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="hidden" id="id_edita">
+                        <input type="text" class="form-control" id="nome_edita" required placeholder="Nome do país">
+                    </div>
+                    <div class="form-group">
+                        <label for="capital">Capital:</label>
+                        <input type="text" class="form-control" id="capital_edita" required placeholder="Capital do país">
+                    </div>
+                    <button type="button" class="btn btn-danger" id="btn_cancela">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btn_edicao">Gravar</button>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Inclua o SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/index.js"></script>
+   
+
+
+</body>
+
+</html>
+
