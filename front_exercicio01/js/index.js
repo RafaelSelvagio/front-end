@@ -18,7 +18,7 @@ function cadastraPais() {
     };
 
     // Realizar a requisição
-    fetch('http://localhost:8080/pais', opcoes)
+    fetch('https://nondescript-eye-production.up.railway.app/pais', opcoes)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erro ao cadastrar país');
@@ -50,7 +50,7 @@ function cadastraPais() {
 }
 
 function buscaTodos() {
-   fetch('http://localhost:8080/pais')
+   fetch('https://nondescript-eye-production.up.railway.app/pais')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erro ao buscar países');
