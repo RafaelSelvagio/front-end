@@ -83,13 +83,16 @@ function buscaTodos() {
 			const selectOrdenacao = document.createElement('select');
 			selectOrdenacao.setAttribute('id', 'selectOrdenacao');
 			selectOrdenacao.classList.add('form-control');
+			selectOrdenacao.onchange = function() {
+				ordenaTabela();
+			};
 
 			// Adiciona as opções
 			const opcaoSemOrdenar = document.createElement('option');
 			opcaoSemOrdenar.value = '';
 			opcaoSemOrdenar.textContent = 'Sem ordenar';
 			selectOrdenacao.appendChild(opcaoSemOrdenar);
-			
+
 			const opcaoNomeCrescente = document.createElement('option');
 			opcaoNomeCrescente.value = 'nomeCrescente';
 			opcaoNomeCrescente.textContent = 'Nome Crescente';
@@ -164,17 +167,15 @@ function buscaTodos() {
 
 // Função para buscar país por nome
 function buscaPorNome() {
-	// Implemente a função
+	
 }
 
-// Função para excluir país por id
 function excluiPais(id) {
-	// Implemente a função
+	
 }
 
-// Função para editar país por id
 function editaPais(id) {
-    // Implemente a função
+
 }
 
 function cancelaEdicao() {
@@ -192,9 +193,12 @@ function cancelaEdicao() {
 	});
 }
 
-// Função para gravar edição de pais
 function gravaEdicao() {
-	// Implemente a função
+	
+}
+
+function ordenaTabela() {
+	
 }
 
 
