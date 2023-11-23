@@ -18,7 +18,7 @@ function cadastraPais() {
 	};
 
 	// Realizar a requisição
-	fetch('https://nondescript-eye-production.up.railway.app/pais', opcoes)
+	fetch('http://localhost:8080/pais', opcoes)
 		.then(response => {
 			if (!response.ok) {
 				throw new Error('Erro ao cadastrar país');
@@ -50,7 +50,7 @@ function cadastraPais() {
 }
 
 function buscaTodos() {
-	fetch('https://nondescript-eye-production.up.railway.app/pais')
+	fetch('http://localhost:8080/pais')
 		.then(response => {
 			if (!response.ok) {
 				throw new Error('Erro ao buscar países');
@@ -181,7 +181,7 @@ function buscaPorNome() {
 	}
 
 	// URL do endpoint
-	const url = `https://nondescript-eye-production.up.railway.app/pais/nome/${encodeURIComponent(nomeParaBuscar)}`;
+	const url = `http://localhost:8080/pais/nome/${encodeURIComponent(nomeParaBuscar)}`;
 
 	// Configuração da solicitação
 	const requestOptions = {
@@ -234,7 +234,7 @@ function buscaPorNome() {
 
 function excluiPais(id) {
 	// URL do endpoint
-	const url = `https://nondescript-eye-production.up.railway.app/pais/${id}`;
+	const url = `http://localhost:8080/pais/${id}`;
 
 	// Configuração da solicitação
 	const requestOptions = {
@@ -274,7 +274,7 @@ function excluiPais(id) {
 function editaPais(id) {
 
 	// URL do endpoint
-	const url = `https://nondescript-eye-production.up.railway.app/pais/${id}`;
+	const url = `http://localhost:8080/pais/${id}`;
 
 	// Configuração da solicitação
 	const requestOptions = {
@@ -333,7 +333,7 @@ function gravaEdicao() {
 	var capital = document.getElementById('capital_edita').value;
 
 	// URL do endpoint
-	var url = `https://nondescript-eye-production.up.railway.app/pais/${id}`;
+	var url = `http://localhost:8080/pais/${id}`;
 
 	// Dados a serem enviados no corpo da requisição
 	var data = {
