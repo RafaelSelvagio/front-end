@@ -34,7 +34,7 @@ function cadastrarTarefa() {
 
 	// Aqui você deve fazer a requisição POST para o back-end
 	// Exemplo com fetch:
-	fetch('https://railwaybancoexercicio02-production.up.railway.app/tarefas/criar', {
+	fetch('http://localhost:8080/tarefas/criar', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ function cadastrarTarefa() {
 function listarTarefas() {
 	// Aqui você deve fazer a requisição GET para o back-end
 	// Exemplo com fetch:
-	fetch('https://railwaybancoexercicio02-production.up.railway.app/tarefas/DTO')
+	fetch('http://localhost:8080/tarefas/DTO')
 		.then(response => response.json())
 		.then(data => {
 			const listaTarefas = document.getElementById('listaTarefas');
@@ -80,7 +80,7 @@ function listarTarefas() {
 function exibirDetalhesTarefa(idTarefa) {
 	// Aqui você deve fazer a requisição GET para o back-end
 	// Exemplo com fetch:
-	fetch(`https://railwaybancoexercicio02-production.up.railway.app/tarefas/exibir/${idTarefa}`)
+	fetch(`http://localhost:8080/tarefas/exibir/${idTarefa}`)
 		.then(response => response.json())
 		.then(data => {
 			exibeDetalhesTarefa(data.idTarefa, data.titulo, data.descricao, data.dataCriacao, data.dataVencimento, data.prioridade, data.estado);
@@ -108,7 +108,7 @@ function buscaTarefaPorId() {
 	let idTarefa = $("#detalhesIdTarefa").html();
 
 	// Enviar a requisição para o servidor (usando o endpoint apropriado)
-	fetch(`https://railwaybancoexercicio02-production.up.railway.app/tarefas/exibir/${idTarefa}`)
+	fetch(`http://localhost:8080/tarefas/exibir/${idTarefa}`)
 		.then(response => {
 			if (!response.ok) {
 				throw new Error('Erro ao obter dados da tarefa');
@@ -149,7 +149,7 @@ function finalizarTarefa() {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			// Fazer a chamada para o backend para excluir a tarefa
-			fetch(`https://railwaybancoexercicio02-production.up.railway.app/tarefas/finalizar/${idTarefa}`, {
+			fetch(`http://localhost:8080/tarefas/finalizar/${idTarefa}`, {
 				method: 'PUT',
 				headers: {
 					'Content-Type': 'application/json'
@@ -203,7 +203,7 @@ function gravaEdicaoTarefa() {
 	};
 
 
-	fetch(`https://railwaybancoexercicio02-production.up.railway.app/tarefas/atualizar/${idTarefa}`, {
+	fetch(`http://localhost:8080/tarefas/atualizar/${idTarefa}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json'
@@ -250,7 +250,7 @@ function excluirTarefa() {
 	}).then((result) => {
 		if (result.isConfirmed) {
 			// Fazer a chamada para o backend para excluir a tarefa
-			fetch(`https://railwaybancoexercicio02-production.up.railway.app/tarefas/remover/${idTarefa}`, {
+			fetch(`http://localhost:8080/tarefas/remover/${idTarefa}`, {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json'
